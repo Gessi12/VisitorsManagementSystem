@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script language="javascript">
+  alert("{{ .message}}")
+</script>
+  <meta charset="UTF-8">
+  <title>访客管理表</title>
+</head>
+<style>
+  table, th, td {
+    border: solid 1px #efefef;
+  }
+
+  body {
+    background: url('https://pic3.zhimg.com/v2-c6ae9c3aff36b9b221258f6a90577902_r.jpg') no-repeat;
+    background-size: cover;
+  }
+
+  h1 {
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    border-radius: 6px;
+    background-color: #ffffff;
+    opacity:0.8;
+
+  }
+  td,th{
+    padding: 10px;
+  }
+  a {
+    text-decoration-line: none;
+    color: green;
+  }
+  a:hover {
+    color: brown;
+    text-decoration-line: underline;
+  }
+  tr:first-child {
+    background-color: #efefef;
+    border-radius: 4px 4px 0 0;
+    border-bottom: solid 1px #ddd;
+  }
+  table caption {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    margin-bottom: 20px;
+  }
+  p {
+    text-align: center;
+  }
+  /*首页样式*/
+  p a:first-child {
+    width: 56px;
+  }
+  p a:last-child {
+    width: 56px;
+  }
+  p a {
+    display: inline-block;
+    width: 28px;
+    height: 24px;
+    border: 1px solid green;
+    margin-left:2px;
+    line-height: 24px;
+  }
+  /*当前页样式*/
+  .active {
+    background-color: green;
+    color: white;
+  }
+  .more {
+    border: none;
+  }
+
+  button{
+    background-color:dodgerblue;
+    color:white;
+    width: 300px;
+    height: 47px;
+    border:0;
+    font-size: 16px;
+    border-radius: 30px;
+  }
+
+</style>
+<body>
+<h1>访客信息表</h1>
+<a href="http://127.0.0.1:9090/admin/find" target="_blank">
+  <button>查询</button>
+</a>
+
+  <a href="http://127.0.0.1:9090/visitor/getAdd" target="_blank">
+  <button style="float: right">登记</button></a>
+
+<table class="table table-hover text-center">
+  <tbody><tr>
+    <th width="5%">ID</th>
+    <th width="35%">姓名</th>
+    <th width="10%">性别</th>
+    <th width="15%">进入时间</th>
+    <th width="20%">事由</th>
+    <th width="5">操作</th>
+  </tr>
+
+  {{ range $v := .data}}
+  <tr>
+    <td>{{ $v.ID}}</td>
+    <td>{{ $v.VisitorName}}</td>
+    <td>{{ $v.Sex}}</td>
+    <td>{{ $v.CreatedAt}}</td>
+    <td>{{ $v.Event}}</td>
+    <td><a class="layui-btn layui-btn-danger layui-btn-xs" href="/admin/delete/{{ .ID }}">删除</a></td>
+  </tr>
+
+  {{ end }}
+  </tbody></table>
+</body>
+</html>

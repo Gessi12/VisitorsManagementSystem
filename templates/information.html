@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script language="javascript">
+        alert("{{ .message}}")
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>访客管理</title>
+
+<style>
+    table, th, td {
+        border: solid 1px #efefef;
+    }
+    h1 {
+        text-align: center;
+        color: white;
+    }
+    body {
+        background: url('https://th.bing.com/th/id/R.89f09b8e688d6ee672f97f04fb2ffdbc?rik=7pUC8Nia8xnIvw&pid=ImgRaw&r=0') no-repeat;
+        background-size: cover;
+    }
+    table {
+        width: 100%;
+        margin: auto;
+        text-align: center;
+        border-radius: 6px;
+        background-color: #ffffff;
+        opacity:0.8;
+    }
+
+    td,th{
+        padding: 10px;
+    }
+    a {
+        text-decoration-line: none;
+        color: green;
+    }
+    a:hover {
+        color: brown;
+        text-decoration-line: underline;
+    }
+    tr:first-child {
+        background-color: #efefef;
+        border-radius: 4px 4px 0 0;
+        border-bottom: solid 1px #ddd;
+    }
+    table caption {
+        font-size: 1.5rem;
+        font-weight: bolder;
+        margin-bottom: 20px;
+    }
+    p {
+        text-align: center;
+    }
+    /*首页样式*/
+    p a:first-child {
+        width: 56px;
+    }
+    p a:last-child {
+        width: 56px;
+    }
+    p a {
+        display: inline-block;
+        width: 28px;
+        height: 24px;
+        border: 1px solid green;
+        margin-left:2px;
+        line-height: 24px;
+    }
+    /*当前页样式*/
+    .active {
+        background-color: green;
+        color: white;
+    }
+    .more {
+        border: none;
+    }
+    button{
+        background-color:dodgerblue;
+        color:white;
+        width: 300px;
+        height: 47px;
+        border:0;
+        font-size: 16px;
+        border-radius: 30px;
+    }
+</style>
+</head>
+<body>
+<h1>访客信息</h1>
+<table class="table table-hover text-center">
+    <tbody><tr>
+        <th width="5%">ID</th>
+        <th width="10%">姓名</th>
+        <th width="5%">性别</th>
+        <th width="15%">手机号</th>
+        <th width="15%">身份证号码</th>
+        <th width="15%">进入时间</th>
+        <th width="15%">事由</th>
+    </tr>
+<!--    /*ID uint `json:"ID"`-->
+<!--    VisitorName string `json:"VisitorName"`-->
+<!--    Sex string `json:"Sex"`-->
+<!--    Phone string `json:"Phone"`-->
+<!--    VisitId string `json:"VisitId"`-->
+<!--    CreatedAt time.Time `json:"CreatedAt"`-->
+<!--    Event string `json:"Event"`*/-->
+    {{ range $v := .data}}
+    <tr>
+        <td>{{ $v.ID}}</td>
+        <td>{{ $v.VisitorName}}</td>
+        <td>{{ $v.Sex}}</td>
+        <td>{{ $v.Phone}}</td>
+        <td>{{ $v.VisitId}}</td>
+        <td>{{ $v.CreatedAt}}</td>
+        <td>{{ $v.Event}}</td>
+    </tr>
+    {{ end }}
+
+    </tbody></table>
+<a href="http://127.0.0.1:9090/admin/edit">
+    <button>信息更新</button>
+</a>
+<a href="http://127.0.0.1:9090/visitor/getAdd">
+    <button style="float: right">登记</button>
+</a>
+<!--分页-->
+</body>
+</html>
